@@ -285,7 +285,7 @@ export default function Media({eventData, datasources, laneMap}: {eventData: any
                             ):
                             (
                                 <div>
-                                    <Typography variant="h6" align="center">No video data available.</Typography>
+                                    <Typography variant="h6" align="center" data-i18n="eventDetails.media.noVideo">No video data available.</Typography>
                                 </div>
                             )}
 

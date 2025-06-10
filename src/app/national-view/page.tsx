@@ -10,7 +10,7 @@ export default function NationalViewPage() {
 
     return (
         <Box>
-            <Typography variant="h4">National View</Typography>
+            <Typography variant="h4" data-i18n="nationalViewPage.title">National View</Typography>
             <br/>
 
             <NationalDatePicker/>

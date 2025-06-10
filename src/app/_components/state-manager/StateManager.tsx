@@ -240,37 +240,37 @@ export default function StateManager() {
     return (
         <Box sx={{margin: 2, padding: 2, width: isSmallScreen ? '100%' : '75%'}}>
             <Card>
-                <CardHeader title={"Configuration Management"} titleTypographyProps={{variant: "h2"}}/>
+                <CardHeader title={"Configuration Management"} data-i18n-title="configManagement.title" titleTypographyProps={{variant: "h2"}}/>
                 <CardContent component="form">
                     <Box>
                         <Stack spacing={3} divider={<Divider orientation={"horizontal"} flexItem/>} direction="column">
 
                             <Card variant={"outlined"}>
-                                <CardHeader title={"Save Config Options"}/>
+                                <CardHeader title={"Save Config Options"} data-i18n-title="configManagement.save.title"/>
                                 <CardContent>
                                     <Stack spacing={2}>
 
-                                        <TextField label="File Name" value={fileName} onChange={handleChangeForm}/>
+                                        <TextField label="File Name" data-i18n-label="configManagement.save.fileNameLabel" value={fileName} onChange={handleChangeForm}/>
                                         <Button onClick={() => setActiveAlert('save')} variant={"contained"} color={"primary"}
-                                                disabled={activeAlert ==='save'}>
+                                                disabled={activeAlert ==='save'} data-i18n="configManagement.save.saveButton">
                                             Save
                                         </Button>
                                         <Button onClick={() => setActiveAlert('saveload')} variant={"outlined"} color={"primary"}
-                                                disabled={activeAlert === 'saveload'}>
+                                                disabled={activeAlert === 'saveload'} data-i18n="configManagement.save.saveAndLoadButton">
                                             Save and Load
                                         </Button>
                                         {activeAlert === 'saveload' && (
                                             <Alert severity={"warning"}>
-                                                <AlertTitle>Please Confirm</AlertTitle>
+                                                <AlertTitle data-i18n="configManagement.save.confirmAlert.title">Please Confirm</AlertTitle>
                                                 <Stack spacing={2} direction={"row"}>
-                                                    <Typography>
+                                                    <Typography data-i18n="configManagement.save.confirmAlert.saveAndLoadMessage">
                                                         Are you sure you want to save and load the current configuration (and overwrite
                                                         the previous one)?
                                                     </Typography>
-                                                    <Button color={"success"} variant="contained" onClick={handleSaveLoadState}>
+                                                    <Button color={"success"} variant="contained" onClick={handleSaveLoadState} data-i18n="configManagement.save.saveButton">
                                                         Save
                                                     </Button>
-                                                    <Button color={"error"} variant="contained" onClick={() => setActiveAlert(null)}>
+                                                    <Button color={"error"} variant="contained" onClick={() => setActiveAlert(null)} data-i18n="configManagement.save.cancelButton">
                                                         Cancel
                                                     </Button>
                                                 </Stack>
@@ -278,26 +278,28 @@ export default function StateManager() {
                                         )}
                                         {activeAlert ==='save' && (
                                             <Alert severity={"warning"}>
-                                                <AlertTitle>Please Confirm</AlertTitle>
+                                                <AlertTitle data-i18n="configManagement.save.confirmAlert.title">Please Confirm</AlertTitle>
 
                                                 <Stack spacing={2} direction={"row"}>
-                                                    <Typography>
+                                                    <Typography data-i18n="configManagement.save.confirmAlert.saveMessage">
                                                         Are you sure you want to save the configuration (and overwrite
                                                         the previous one)?
                                                     </Typography>
                                                     <Button color={"success"} variant="contained"
-                                                            onClick={saveConfigState}>
+                                                            onClick={saveConfigState} data-i18n="configManagement.save.saveButton">
                                                         Save
                                                     </Button>
                                                     <Button color={"error"} variant="contained"
-                                                            onClick={() => setActiveAlert(null)}>
+                                                            onClick={() => setActiveAlert(null)} data-i18n="configManagement.save.cancelButton">
                                                         Cancel
                                                     </Button>
                                                 </Stack>
 
                                             </Alert>
                                         )}
+                                        {/* TODO: Snackbar message is dynamic (saveSnackMsg) */}
                                         <Snackbar
+                                            data-i18n="configManagement.save.snackbarMessage"
                                             anchorOrigin={{vertical: 'top', horizontal: 'center'}}
                                             open={openSaveSnack}
                                             autoHideDuration={5000}
@@ -314,50 +316,52 @@ export default function StateManager() {
                             </Card>
 
                             <Card variant={"outlined"}>
-                                <CardHeader title={"Load Config Options"}/>
+                                <CardHeader title={"Load Config Options"} data-i18n-title="configManagement.load.title"/>
                                 <CardContent>
                                     <Stack spacing={2}>
-                                        <TextField label="Server Address" name="address" value={loadNodeOpts.address}
+                                        <TextField label="Server Address" data-i18n-label="configManagement.load.serverAddressLabel" name="address" value={loadNodeOpts.address}
                                                    onChange={handleChangeLoadForm}/>
-                                        <TextField label="Server Port" name="port" value={loadNodeOpts.port}
+                                        <TextField label="Server Port" data-i18n-label="configManagement.load.serverPortLabel" name="port" value={loadNodeOpts.port}
                                                    onChange={handleChangeLoadForm}/>
-                                        <TextField label="Server Endpoint" name="sosEndpoint"
+                                        <TextField label="Server Endpoint" data-i18n-label="configManagement.load.serverEndpointLabel" name="sosEndpoint"
                                                    value={loadNodeOpts.oshPathRoot}
                                                    onChange={handleChangeLoadForm}/>
-                                        <TextField label="API Endpoint" name="csAPIEndpoint"
+                                        <TextField label="API Endpoint" data-i18n-label="configManagement.load.apiEndpointLabel" name="csAPIEndpoint"
                                                    value={loadNodeOpts.csAPIEndpoint}
                                                    onChange={handleChangeLoadForm}/>
-                                        <TextField label="Server Username" name="username"
+                                        <TextField label="Server Username" data-i18n-label="configManagement.load.serverUsernameLabel" name="username"
                                                    value={loadNodeOpts.auth.username}
                                                    onChange={handleChangeLoadForm}/>
-                                        <TextField label="Server Password" name="password"
+                                        <TextField label="Server Password" data-i18n-label="configManagement.load.serverPasswordLabel" name="password"
                                                    value={loadNodeOpts.auth.password}
                                                    onChange={handleChangeLoadForm} type={"password"}/>
 
                                         <Button onClick={() => setActiveAlert('load')} variant={"contained"} color={"primary"}
-                                                disabled={activeAlert === 'load'}>
+                                                disabled={activeAlert === 'load'} data-i18n="configManagement.load.loadStateButton">
                                             Load State
                                         </Button>
                                         {activeAlert === 'load' && (
                                             <Alert severity={"warning"}>
-                                                <AlertTitle>Please Confirm</AlertTitle>
+                                                <AlertTitle data-i18n="configManagement.save.confirmAlert.title">Please Confirm</AlertTitle>
                                                 <Container>
                                                     <Stack spacing={2} direction={"row"}>
-                                                        <Typography>
+                                                        <Typography data-i18n="configManagement.load.confirmAlert.loadMessage">
                                                             Are you sure you want to load the configuration (and
                                                             overwrite the previous one)?
                                                         </Typography>
-                                                        <Button variant={"contained"} color={"success"} onClick={handleLoadState}>
+                                                        <Button variant={"contained"} color={"success"} onClick={handleLoadState} data-i18n="configManagement.load.yesButton">
                                                             Yes
                                                         </Button>
-                                                        <Button color={"error"} variant="contained" onClick={() => setActiveAlert(null)}>
+                                                        <Button color={"error"} variant="contained" onClick={() => setActiveAlert(null)} data-i18n="configManagement.save.cancelButton">
                                                             Cancel
                                                         </Button>
                                                     </Stack>
                                                 </Container>
                                             </Alert>
                                         )}
+                                        {/* TODO: Snackbar message is dynamic (loadSnackMsg) */}
                                         <Snackbar
+                                            data-i18n="configManagement.load.snackbarMessage"
                                             anchorOrigin={{vertical: 'top', horizontal: 'center'}}
                                             open={openSnack}
                                             autoHideDuration={5000}

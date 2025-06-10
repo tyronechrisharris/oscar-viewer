@@ -145,9 +145,9 @@ export default function NodeList({modeChangeCallback}: NodeListProps) {
 
     return (
         <Box sx={{width: '100%'}}>
-            <p>Nodes:</p>
+            <p data-i18n="servers.nodeList.title">Nodes:</p>
             {nodes.length === 0 ? (
-                <p>No Nodes</p>
+                <p data-i18n="servers.nodeList.noNodes">No Nodes</p>
             ) : (
                 <List>
                     {nodes.map((node: INode) => (
@@ -155,9 +155,9 @@ export default function NodeList({modeChangeCallback}: NodeListProps) {
                             <ListItem sx={{m: 0}}>
                                 <ListItemText primary={node.name} secondary={node.address}/>
                                 <Button variant="contained" size={"small"} color="primary" sx={{m: 1}}
-                                        onClick={() => setEditNode(node)}>Edit</Button>
+                                        onClick={() => setEditNode(node)} data-i18n="servers.nodeList.editButton">Edit</Button>
                                 <Button variant="contained" size={"small"} color="secondary" sx={{m: 1}}
-                                        onClick={() => deleteNode(node.id)}>Delete</Button>
+                                        onClick={() => deleteNode(node.id)} data-i18n="servers.nodeList.deleteButton">Delete</Button>
                             </ListItem>
                         </Card>
                     ))}

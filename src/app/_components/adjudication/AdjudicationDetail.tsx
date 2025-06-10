@@ -219,25 +219,25 @@ export default function AdjudicationDetail(props: { event: EventTableData }) {
 
     return (
         <Stack direction={"column"} p={2} spacing={2}>
-            <Typography variant="h4">Adjudication</Typography>
+            <Typography variant="h4" data-i18n="adjudicationDetail.title">Adjudication</Typography>
             <Box>
                 <AdjudicationLog comments={comments} event={props.event} shouldFetch={shouldFetchLogs} onFetch={onFetchComplete}/>
             </Box>
 
-            <Typography variant="h5">Adjudication Report Form</Typography>
+            <Typography variant="h5" data-i18n="adjudicationDetail.reportFormTitle">Adjudication Report Form</Typography>
             <Stack direction={"row"} spacing={2} justifyContent={"start"} alignItems={"center"}>
                 {/*<Avatar>OP</Avatar>*/}
                 <Box>
                     <Stack direction="row" spacing={1}>
                         <TextField
-                            label="Username"
+                            label="Username" data-i18n-label="adjudicationDetail.usernameLabel"
                             name="username"
                             value={currentUser}
                             onChange={handleChange}
                             disabled
                         />
                         <TextField
-                            label="VehicleId"
+                            label="VehicleId" data-i18n-label="adjudicationDetail.vehicleIdLabel"
                             name="vehicleId"
                             value={vehicleId}
                             onChange={handleChange}
@@ -253,7 +253,7 @@ export default function AdjudicationDetail(props: { event: EventTableData }) {
             </Stack>
             <TextField
                 id="outlined-multiline-static"
-                label="Notes"
+                label="Notes" data-i18n-label="adjudicationDetail.notesLabel"
                 name="notes"
                 multiline
                 rows={4}
@@ -297,7 +297,8 @@ export default function AdjudicationDetail(props: { event: EventTableData }) {
                         borderColor: "secondary.main",
                         backgroundColor: "inherit",
                         color: "secondary.main"
-                    }}>
+                    }}
+                    data-i18n="adjudicationDetail.uploadFilesButton">
                     Upload Files
                     <InputBase
                         disabled
@@ -313,8 +314,17 @@ export default function AdjudicationDetail(props: { event: EventTableData }) {
                     {/*<FormControlLabel control={<Checkbox name="secondaryInspection" checked={secondaryInspection}*/}
                     {/*                                     onChange={handleChange}/>} label="Secondary Inspection"/>*/}
                     <Button disableElevation variant={"contained"} color={"success"}
-                            onClick={sendAdjudicationData}>Submit</Button>
+                            onClick={sendAdjudicationData} data-i18n="adjudicationDetail.submitButton">Submit</Button>
+                    {/* TODO: This Snackbar's message is dynamic (adjSnackMsg).
+                        The i18n library will need to handle translation of these messages before they are set in the state.
+                        Possible keys:
+                        adjudicationDetail.error.selectValidCode,
+                        adjudicationDetail.snackbar.submitSuccess,
+                        adjudicationDetail.snackbar.submitFailed,
+                        adjudicationDetail.snackbar.cannotFindObservation,
+                        adjudicationDetail.snackbar.adjudicationFailed */}
                     <Snackbar
+                        data-i18n="adjudicationDetail.snackbarMessage"
                         anchorOrigin={{ vertical:'top', horizontal:'center' }}
                         open={openSnack}
                         autoHideDuration={5000}

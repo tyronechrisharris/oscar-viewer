@@ -9,14 +9,14 @@ export default function MapViewPage() {
     const Map = useMemo(() => dynamic(
         () => import('@/app/_components/maps/MapComponent'),
         {
-            loading: () => <p> loading </p>,
+            loading: () => <p data-i18n="mapPage.loading"> loading </p>,
             ssr: false
         }
     ),[])
 
     return (
         <Box>
-            <Typography variant="h4" sx={{padding: 2}}>Map</Typography>
+            <Typography variant="h4" sx={{padding: 2}} data-i18n="mapPage.title">Map</Typography>
             <br />
             <Paper variant='outlined' sx={{height: "900", width: "600"}}>
                 <div style={{height: '100%', width: '100%'}}>

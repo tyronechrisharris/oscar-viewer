@@ -40,12 +40,12 @@ export default function NationalDatePicker(){
         <Grid container direction={"row"} padding={1} spacing={1}>
             <Grid item>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DateTimePicker label="Start Date" value={startTime} onChange={handleStartTimeChange}/>
+                    <DateTimePicker label="Start Date" data-i18n-label="nationalView.datePicker.startDateLabel" value={startTime} onChange={handleStartTimeChange}/>
                 </LocalizationProvider>
             </Grid>
             <Grid item>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DateTimePicker label="End Date" value={endTime} onChange={handleEndTimeChange}/>
+                    <DateTimePicker label="End Date" data-i18n-label="nationalView.datePicker.endDateLabel" value={endTime} onChange={handleEndTimeChange}/>
                 </LocalizationProvider>
             </Grid>
         </Grid>

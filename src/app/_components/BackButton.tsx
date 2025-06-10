@@ -8,7 +8,7 @@ export default function BackButton() {
               onClick={() => {
                   window.history.back();
               }}
-      >
+        data-i18n="backButton.label">
         Back
       </Button>
   )

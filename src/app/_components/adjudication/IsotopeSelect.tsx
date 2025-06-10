@@ -74,9 +74,9 @@ export default function IsotopeSelect(props: {
 
   return (
       <FormControl size="small" fullWidth>
-        <InputLabel id="label" sx={{"&.MuiInputLabel-root":{color: "inherit"}}}>Isotope</InputLabel>
+        <InputLabel id="label" sx={{"&.MuiInputLabel-root":{color: "inherit"}}} data-i18n="isotopeSelect.label">Isotope</InputLabel>
         <Select
-            label="Isotope"
+            label="Isotope" data-i18n-label="isotopeSelect.label"
             id="label"
             multiple
             value={props.isotopeValue}
@@ -108,12 +108,17 @@ export default function IsotopeSelect(props: {
                   },
             }}
         >
-            {isotopeChoices.map((item) =>(
-                <MenuItem key={item} value={item}>
-                    {item}
-                </MenuItem>
-                ))
-            }
+            {isotopeChoices.map((item) => {
+                if (item === "") {
+                    return <MenuItem key={item} value={item}>{item}</MenuItem>;
+                }
+                const itemKey = item.toLowerCase().replace(/[^a-z0-9]/g, ''); // Create a safe key
+                return (
+                    <MenuItem key={item} value={item} data-i18n={`isotopeSelect.choice.${itemKey}`}>
+                        {item}
+                    </MenuItem>
+                );
+            })}
         </Select>
       </FormControl>
   );

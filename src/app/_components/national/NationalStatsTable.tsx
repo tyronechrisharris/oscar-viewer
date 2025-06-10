@@ -199,14 +199,14 @@ export default function StatTable(){
     const columns: GridColDef<INationalTableData>[] = [
         {
             field: 'site',
-            headerName: 'Site Name',
+            headerName: 'Site Name', // data-i18n="nationalView.statsTable.header.siteName"
             type: 'string',
             minWidth: 150,
             flex: 1,
         },
         {
             field: 'occupancyCount',
-            headerName: 'Occupancy',
+            headerName: 'Occupancy', // data-i18n="nationalView.statsTable.header.occupancy"
             valueFormatter: (value) => {
                 return typeof value === 'number' ? value : 0;
             },
@@ -215,7 +215,7 @@ export default function StatTable(){
         },
         {
             field: 'gammaAlarmCount',
-            headerName: 'Gamma Alarms',
+            headerName: 'Gamma Alarms', // data-i18n="nationalView.statsTable.header.gammaAlarms"
             valueFormatter: (value) => {
                 return typeof value === 'number' ? value : 0;
             },
@@ -224,7 +224,7 @@ export default function StatTable(){
         },
         {
             field: 'neutronAlarmCount',
-            headerName: 'Neutron Alarms',
+            headerName: 'Neutron Alarms', // data-i18n="nationalView.statsTable.header.neutronAlarms"
             valueFormatter: (value) => {
                 return typeof value === 'number' ? value : 0;
             },
@@ -233,7 +233,7 @@ export default function StatTable(){
         },
         {
             field: 'faultAlarmCount',
-            headerName: 'Fault Alarms',
+            headerName: 'Fault Alarms', // data-i18n="nationalView.statsTable.header.faultAlarms"
             valueFormatter: (value) => {
                 return typeof value === 'number' ? value : 0;
             },
@@ -242,7 +242,7 @@ export default function StatTable(){
         },
         {
             field: 'tamperAlarmCount',
-            headerName: 'Tamper Alarms',
+            headerName: 'Tamper Alarms', // data-i18n="nationalView.statsTable.header.tamperAlarms"
             valueFormatter: (value) => {
                 return typeof value === 'number' ? value : 0;
             },

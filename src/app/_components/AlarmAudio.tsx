@@ -70,14 +70,14 @@ export default function AlarmAudio() {
 
     return (
         <Box sx={{width: 200, padding: 1}}>
-            <Typography variant="body2" gutterBottom>
+            <Typography variant="body2" gutterBottom data-i18n="alarmAudio.volumeTitle">
                 Alarm Volume
             </Typography>
 
             <Stack spacing={2} direction="row" sx={{alignItems: 'center', mb: 1}}>
                 <VolumeDown/>
                 <Slider
-                    aria-label="Volume"
+                    aria-label="Volume" data-i18n-aria-label="alarmAudio.volumeSliderLabel"
                     value={volumeValue}
                     onChange={handleVolumeChange}
                     valueLabelDisplay="auto"

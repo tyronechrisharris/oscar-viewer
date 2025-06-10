@@ -221,14 +221,14 @@ export default function StatusTables({laneMap}: TableProps){
     const columns: GridColDef<AlarmTableData>[] = [
         {
             field: 'laneId',
-            headerName: 'Lane ID',
+            headerName: 'Lane ID', // data-i18n="eventDetails.dataRow.header.laneId"
             type: 'string',
             minWidth: 100,
             flex: 1,
         },
         {
             field: 'timestamp',
-            headerName: 'Timestamp',
+            headerName: 'Timestamp', // data-i18n="adjudicationLog.table.header.timestamp"
             valueFormatter: (params) => (new Date(params)).toLocaleString(locale, {
                 year: 'numeric',
                 month: 'numeric',
@@ -243,7 +243,7 @@ export default function StatusTables({laneMap}: TableProps){
         },
         {
             field: 'status',
-            headerName: 'Status',
+            headerName: 'Status', // data-i18n="eventDetails.dataRow.header.status"
             type: 'string',
             minWidth: 150,
             flex: 1,

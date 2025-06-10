@@ -39,10 +39,11 @@ export default function AccountViewPage() {
     return (
         <Container sx={{width: "40%"}}>
             <Stack spacing={2} alignItems={"center"}>
-                <Typography variant="h4">Login</Typography>
-                <TextField autoComplete="new-username" fullWidth id="username" placeholder="Username" variant="outlined" onChange={onChangeUserName}/>
-                <TextField autoComplete="new-password" fullWidth id="password" placeholder="Password" variant="outlined" type="password"/>
-                <Button fullWidth variant="contained" color="success" onClick={onClickLogin}>Login</Button>
+                <Typography variant="h4" data-i18n="login.title">Login</Typography>
+                <TextField autoComplete="new-username" fullWidth id="username" placeholder="Username" data-i18n-placeholder="login.usernamePlaceholder" variant="outlined" onChange={onChangeUserName}/>
+                <TextField autoComplete="new-password" fullWidth id="password" placeholder="Password" data-i18n-placeholder="login.passwordPlaceholder" variant="outlined" type="password"/>
+                <Button fullWidth variant="contained" color="success" onClick={onClickLogin} data-i18n="login.loginButton">Login</Button>
+                {/* TODO: The message for this Snackbar is dynamic. The i18n library will need to handle this. */}
                 <Snackbar
                     open={openSnack}
                     anchorOrigin={{ vertical:'top', horizontal:'center' }}
@@ -50,6 +51,7 @@ export default function AccountViewPage() {
                     onClose={handleCloseSnack}
                 >
                     <SnackbarContent
+                        data-i18n="login.alarmWarningSnackbar"
                         style={{
                             backgroundColor: '#f8aa51',
                             color: '#ffffff'

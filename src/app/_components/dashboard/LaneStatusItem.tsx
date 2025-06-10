@@ -35,23 +35,23 @@ export default function LaneStatusItem(props: {
                     <Typography variant="body1" style={{fontSize: 12, textWrap: 'nowrap',  }}>{props.name.length <= 15 ? props.name : (props.name.substr(0, 15)) }</Typography>
 
                     {props.isFault &&
-                        <Tooltip title={'Fault'} arrow placement="top">
+                        <Tooltip title={'Fault'} data-i18n-title="dashboard.laneStatusItem.tooltip.fault" arrow placement="top">
                             <FaultIcon fontSize="small" color="info" />
                         </Tooltip>
                     }
 
                     {props.isTamper &&
-                        <Tooltip title={'Tamper'} arrow placement="top">
+                        <Tooltip title={'Tamper'} data-i18n-title="dashboard.laneStatusItem.tooltip.tamper" arrow placement="top">
                             <TamperIcon fontSize="small" sx={{color: "#FFFFFF" }}/>
                         </Tooltip>
                     }
                     {/*{!props.isTamper && !props.isFault && props.isOnline && (*/}
                     {props.isOnline ? (
-                        <Tooltip title="Online" arrow placement="top">
+                        <Tooltip title="Online" data-i18n-title="dashboard.laneStatusItem.tooltip.online" arrow placement="top">
                             <CheckCircleIcon fontSize="small" color="success"/>
                         </Tooltip>
                     ) : (
-                        <Tooltip title="Offline" arrow placement="top">
+                        <Tooltip title="Offline" data-i18n-title="dashboard.laneStatusItem.tooltip.offline" arrow placement="top">
                             <OfflineIcon fontSize="small" color="error"/>
                         </Tooltip>
                     )}

@@ -235,7 +235,7 @@ export default function NodeForm({isEditNode, modeChangeCallback, editNode}: {
     }
 
     if (!newNode) {
-        return <Container><Typography variant="h4" align="center">Loading...</Typography></Container>
+        return <Container><Typography variant="h4" align="center" data-i18n="servers.nodeForm.loading">Loading...</Typography></Container>
     }
 
 
@@ -271,37 +271,38 @@ export default function NodeForm({isEditNode, modeChangeCallback, editNode}: {
     return (
         <Card sx={{margin: 2, width: '100%'}}>
             <Typography variant="h4" align="center"
-                        sx={{margin: 2}}>{isEditNode ? "Edit Node" : "Add a New Server"}</Typography>
+                        sx={{margin: 2}} data-i18n={isEditNode ? "servers.nodeForm.editTitle" : "servers.nodeForm.addTitle"}>{isEditNode ? "Edit Node" : "Add a New Server"}</Typography>
             <Box component="form" sx={{margin: 2}}>
                 <Stack spacing={4}>
-                    {isEditNode ? <Typography variant={"h6"}>Editing Node: {editNode.id}</Typography> : null}
-                    <TextField label="Name" name="name" value={newNode.name} onChange={handleChange}/>
-                    <TextField label="Address" name="address" value={newNode.address} onChange={handleChange}/>
-                    <TextField label="Port" name="port" value={newNode.port} onChange={handleChange}/>
-                    <TextField label="Node Endpoint" name="sosEndpoint" value={newNode.sosEndpoint}
+                    {isEditNode ? <Typography variant={"h6"} data-i18n="servers.nodeForm.editingNodePrefix">Editing Node: {editNode.id}</Typography> : null}
+                    <TextField label="Name" data-i18n-label="servers.nodeForm.nameLabel" name="name" value={newNode.name} onChange={handleChange}/>
+                    <TextField label="Address" data-i18n-label="servers.nodeForm.addressLabel" name="address" value={newNode.address} onChange={handleChange}/>
+                    <TextField label="Port" data-i18n-label="servers.nodeForm.portLabel" name="port" value={newNode.port} onChange={handleChange}/>
+                    <TextField label="Node Endpoint" data-i18n-label="servers.nodeForm.nodeEndpointLabel" name="sosEndpoint" value={newNode.sosEndpoint}
                                onChange={handleChange}/>
-                    <TextField label="CS API Endpoint" name="csAPIEndpoint" value={newNode.csAPIEndpoint}
+                    <TextField label="CS API Endpoint" data-i18n-label="servers.nodeForm.csApiEndpointLabel" name="csAPIEndpoint" value={newNode.csAPIEndpoint}
                                onChange={handleChange}/>
-                    <Tooltip title={"The endpoint for the configuration API"}>
-                        <TextField label="Config Endpoint" name="configsEndpoint"
+                    <Tooltip title={"The endpoint for the configuration API"} data-i18n-title="servers.nodeForm.configEndpointLabel">
+                        <TextField label="Config Endpoint" data-i18n-label="servers.nodeForm.configEndpointLabel" name="configsEndpoint"
                                    value={newNode.configsEndpoint}
                                    onChange={handleChange}/>
                     </Tooltip>
-                    <TextField label="Username" name="username" value={newNode.auth.username} onChange={handleChange}/>
-                    <TextField label="Password" name="password" type={"password"} value={newNode.auth.password}
+                    <TextField label="Username" data-i18n-label="login.usernamePlaceholder" name="username" value={newNode.auth.username} onChange={handleChange}/>
+                    <TextField label="Password" data-i18n-label="login.passwordPlaceholder" name="password" type={"password"} value={newNode.auth.password}
                                onChange={handleChange}/>
 
-                    <FormControlLabel control={<Checkbox name="isSecure" checked={newNode.isSecure} onChange={handleChange}/>} label="Is Secure"/>
+                    <FormControlLabel control={<Checkbox name="isSecure" checked={newNode.isSecure} onChange={handleChange}/>} label="Is Secure" data-i18n-label="servers.nodeForm.isSecureLabel"/>
 
                     <Stack direction="row" spacing={2}>
                         <Button variant={"contained"} color={"primary"}
-                                onClick={handleAddSave}>{isEditNode ? "Save Changes" : "Add Node"}</Button>
+                                onClick={handleAddSave} data-i18n={isEditNode ? "servers.nodeForm.saveChangesButton" : "servers.nodeForm.addNodeButton"}>{isEditNode ? "Save Changes" : "Add Node"}</Button>
                         <Button variant={"outlined"} color={"secondary"}
-                                onClick={() => modeChangeCallback(false, null)}>Cancel</Button>
+                                onClick={() => modeChangeCallback(false, null)} data-i18n="configManagement.save.cancelButton">Cancel</Button>
                     </Stack>
 
-
+                    {/* TODO: Snackbar message is dynamic (nodeSnackMsg) */}
                     <Snackbar
+                        data-i18n="servers.nodeForm.snackbarMessage"
                         open={openSnack}
                         anchorOrigin={{ vertical:'top', horizontal:'center' }}
                         autoHideDuration={5000}

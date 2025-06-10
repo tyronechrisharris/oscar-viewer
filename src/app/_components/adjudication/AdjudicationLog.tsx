@@ -15,13 +15,13 @@ const locale = navigator.language || 'en-US';
 const logColumns: GridColDef<AdjudicationData>[] = [
     {
         field: 'occupancyId',
-        headerName: 'Occupancy ID',
+        headerName: 'Occupancy ID', // data-i18n="adjudicationLog.table.header.occupancyId"
         width: 200,
         type: 'string',
     },
     {
         field: 'time',
-        headerName: 'Timestamp',
+        headerName: 'Timestamp', // data-i18n="adjudicationLog.table.header.timestamp"
         width: 200,
         type: 'string',
         valueFormatter: (params) => (new Date(params)).toLocaleString(locale, {
@@ -36,12 +36,12 @@ const logColumns: GridColDef<AdjudicationData>[] = [
 
     {
         field: 'secondaryInspectionStatus',
-        headerName: 'Secondary Inspection Status',
+        headerName: 'Secondary Inspection Status', // data-i18n="adjudicationLog.table.header.secondaryInspectionStatus"
         width: 200
     },
     {
         field: 'adjudicationCode',
-        headerName: 'Adjudication Code',
+        headerName: 'Adjudication Code', // data-i18n="adjudicationLog.table.header.adjudicationCode"
         width: 400,
         valueGetter: (value, row) => {
             console.log("ADJDEt - ", row);
@@ -50,19 +50,19 @@ const logColumns: GridColDef<AdjudicationData>[] = [
     },
     {
         field: 'isotopes',
-        headerName: 'Isotopes',
+        headerName: 'Isotopes', // data-i18n="adjudicationLog.table.header.isotopes"
         width: 200,
         valueGetter: (value) => {
-            if (value === "") return "Unknown";
+            if (value === "") return "Unknown"; // data-i18n="adjudicationLog.table.unknownValue" (handled dynamically)
             else return value;
         }
     },
     {
         field: 'vehicleId',
-        headerName: 'Vehicle ID',
+        headerName: 'Vehicle ID', // data-i18n="adjudicationLog.table.header.vehicleId"
         width: 200,
         valueGetter: (value) => {
-            if (value === "") return "Unknown";
+            if (value === "") return "Unknown"; // data-i18n="adjudicationLog.table.unknownValue" (handled dynamically)
             else return value;
         }
     },
@@ -181,8 +181,8 @@ export default function AdjudicationLog(props: {
         <>
             <Stack spacing={2}>
                 <Stack direction={"column"} spacing={1}>
-                    <Typography variant="h5">Logged Adjudications</Typography>
-                    {/*<FormControlLabel control={<Checkbox value={onlySameObs} onClick={toggleOnlySameObs}/>} label="Show Only Same Occupancy"></FormControlLabel>*/}
+                    <Typography variant="h5" data-i18n="adjudicationLog.loggedAdjudicationsTitle">Logged Adjudications</Typography>
+                    {/*<FormControlLabel control={<Checkbox value={onlySameObs} onClick={toggleOnlySameObs}/>} label="Show Only Same Occupancy" data-i18n="adjudicationLog.showOnlySameOccupancyLabel"></FormControlLabel>*/}
 
                 </Stack>
                 <DataGrid

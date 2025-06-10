@@ -12,7 +12,7 @@ export default function EventLogPage() {
 
     return (
         <Box>
-            <Typography variant="h4">Event Log</Typography>
+            <Typography variant="h4" data-i18n="eventLogPage.title">Event Log</Typography>
             <br />
             <Paper variant='outlined' sx={{ height: "100%" }}>
                 <EventTable tableMode={"eventlog"} viewLane viewSecondary viewAdjudicated laneMap={laneMap}/>
