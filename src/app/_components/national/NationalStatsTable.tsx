@@ -199,14 +199,14 @@ export default function StatTable(){
     const columns: GridColDef<INationalTableData>[] = [
         {
             field: 'site',
-            headerName: 'Site Name', // data-i18n="nationalView.statsTable.header.siteName"
+            headerName: 'Site Name',
             type: 'string',
             minWidth: 150,
             flex: 1,
         },
         {
             field: 'occupancyCount',
-            headerName: 'Occupancy', // data-i18n="nationalView.statsTable.header.occupancy"
+            headerName: 'Occupancy',
             valueFormatter: (value) => {
                 return typeof value === 'number' ? value : 0;
             },
@@ -215,7 +215,7 @@ export default function StatTable(){
         },
         {
             field: 'gammaAlarmCount',
-            headerName: 'Gamma Alarms', // data-i18n="nationalView.statsTable.header.gammaAlarms"
+            headerName: 'Gamma Alarms',
             valueFormatter: (value) => {
                 return typeof value === 'number' ? value : 0;
             },
@@ -224,7 +224,7 @@ export default function StatTable(){
         },
         {
             field: 'neutronAlarmCount',
-            headerName: 'Neutron Alarms', // data-i18n="nationalView.statsTable.header.neutronAlarms"
+            headerName: 'Neutron Alarms',
             valueFormatter: (value) => {
                 return typeof value === 'number' ? value : 0;
             },
@@ -233,7 +233,7 @@ export default function StatTable(){
         },
         {
             field: 'faultAlarmCount',
-            headerName: 'Fault Alarms', // data-i18n="nationalView.statsTable.header.faultAlarms"
+            headerName: 'Fault Alarms',
             valueFormatter: (value) => {
                 return typeof value === 'number' ? value : 0;
             },
@@ -242,7 +242,7 @@ export default function StatTable(){
         },
         {
             field: 'tamperAlarmCount',
-            headerName: 'Tamper Alarms', // data-i18n="nationalView.statsTable.header.tamperAlarms"
+            headerName: 'Tamper Alarms',
             valueFormatter: (value) => {
                 return typeof value === 'number' ? value : 0;
             },

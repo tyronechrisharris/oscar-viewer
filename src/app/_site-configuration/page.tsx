@@ -14,15 +14,15 @@ export default function SiteConfiguration() {
 
   return (
     <Stack spacing={2}>
-      <Typography variant="h4" data-i18n="siteConfiguration.title">Site Configuration</Typography>
-      <TextField required id="outlined-basic" label="Friendly Name" data-i18n-label="siteConfiguration.friendlyNameLabel" variant="outlined" type="string" />
-      <TextField required id="outlined-basic" label="Server Address" data-i18n-label="configManagement.load.serverAddressLabel" variant="outlined" type="string" />
-      <TextField required id="outlined-basic" label="Username" data-i18n-label="login.usernamePlaceholder" variant="outlined" type="string" />
-      <TextField required id="outlined-basic" label="Password" data-i18n-label="login.passwordPlaceholder" variant="outlined" type="password" />
+      <Typography variant="h4">Site Configuration</Typography>
+      <TextField required id="outlined-basic" label="Friendly Name" variant="outlined" type="string" />
+      <TextField required id="outlined-basic" label="Server Address" variant="outlined" type="string" />
+      <TextField required id="outlined-basic" label="Username" variant="outlined" type="string" />
+      <TextField required id="outlined-basic" label="Password" variant="outlined" type="password" />
       <FormGroup>
-        <FormControlLabel control={<Checkbox />} label="HTTPS?" data-i18n-label="siteConfiguration.httpsLabel" />
+        <FormControlLabel control={<Checkbox />} label="HTTPS?" />
       </FormGroup>
-      <Button color="success" variant="contained" data-i18n="adjudicationDetail.submitButton">Submit</Button>
+      <Button color="success" variant="contained">Submit</Button>
     </Stack>
   );
 }

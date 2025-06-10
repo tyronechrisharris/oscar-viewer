@@ -24,11 +24,11 @@ export default function SecondaryInspectionSelect(props: {
 
     return (
         <FormControl size="small" fullWidth>
-            <InputLabel id="label" data-i18n="secondaryInspectionSelect.label">Secondary Inspection</InputLabel>
+            <InputLabel id="label" >Secondary Inspection</InputLabel>
             <Select
                 variant="outlined"
                 id="label"
-                label="SecondarySelect" data-i18n-label="secondaryInspectionSelect.label" // Using the same key as InputLabel
+                label="SecondarySelect"
                 value={props.secondarySelectVal}
                 onChange={handleChange}
                 MenuProps={{
@@ -57,11 +57,12 @@ export default function SecondaryInspectionSelect(props: {
                         },
                 }}
             >
-                {secondarySelectChoices.map((item) => (
-                    <MenuItem key={item} value={item} data-i18n={`secondaryInspectionSelect.choice.${item.toLowerCase()}`}>
+                {secondarySelectChoices.map((item) =>(
+                    <MenuItem key={item} value={item}>
                         {item}
                     </MenuItem>
-                ))}
+                ))
+                }
 
             </Select>
         </FormControl>

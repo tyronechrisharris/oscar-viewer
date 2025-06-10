@@ -106,7 +106,7 @@ export default function EventDetailsPage() {
                     <BackButton/>
                 </Grid>
                 <Grid item xs>
-                    <Typography variant="h4" data-i18n="eventDetailsPage.title">Event Details</Typography>
+                    <Typography variant="h4">Event Details</Typography>
                 </Grid>
             </Grid>
 

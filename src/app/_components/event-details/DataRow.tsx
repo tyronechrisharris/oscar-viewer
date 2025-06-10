@@ -21,15 +21,15 @@ export default function DataRow() {
                 <TableHead>
                     <TableRow
                         sx={{'&:last-child td, &:last-child th': {border: 0, textAlign: "center"}}}>
-                        <TableCell data-i18n="eventDetails.dataRow.header.secondaryInspection">Secondary Inspection</TableCell>
-                        <TableCell data-i18n="eventDetails.dataRow.header.laneId">Lane ID</TableCell>
-                        <TableCell data-i18n="eventDetails.dataRow.header.occupancyId">Occupancy ID</TableCell>
-                        <TableCell data-i18n="eventDetails.dataRow.header.startTime">Start Time</TableCell>
-                        <TableCell data-i18n="eventDetails.dataRow.header.endTime">End Time</TableCell>
-                        <TableCell data-i18n="eventDetails.dataRow.header.maxGamma">Max Gamma</TableCell>
-                        <TableCell data-i18n="eventDetails.dataRow.header.maxNeutron">Max Neutron</TableCell>
-                        <TableCell data-i18n="eventDetails.dataRow.header.status">Status</TableCell>
-                        <TableCell data-i18n="eventDetails.dataRow.header.adjudicated">Adjudicated</TableCell>
+                        <TableCell>Secondary Inspection</TableCell>
+                        <TableCell>Lane ID</TableCell>
+                        <TableCell>Occupancy ID</TableCell>
+                        <TableCell>Start Time</TableCell>
+                        <TableCell>End Time</TableCell>
+                        <TableCell>Max Gamma</TableCell>
+                        <TableCell>Max Neutron</TableCell>
+                        <TableCell>Status</TableCell>
+                        <TableCell>Adjudicated</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -43,16 +43,14 @@ export default function DataRow() {
                             <TableCell>{eventData?.endTime}</TableCell>
                             <TableCell>{eventData?.maxGamma}</TableCell>
                             <TableCell>{eventData?.maxNeutron}</TableCell>
-                            {/* TODO: Content is dynamic (eventData?.status). Key 'eventDetails.dataRow.value.unknown' exists. */}
-                            <StatusTableCell status={eventData?.status || 'Unknown'} data-i18n="eventDetails.dataRow.statusValue">
+                            <StatusTableCell status={eventData?.status || 'Unknown'}>
                                 {eventData?.status || 'Unknown'}
                             </StatusTableCell>
-                            {/* TODO: Content is dynamic (isAdjudicated ? 'Yes' : 'No'). Keys 'eventDetails.dataRow.value.yes' and 'eventDetails.dataRow.value.no' exist. */}
-                            <TableCell data-i18n="eventDetails.dataRow.adjudicatedValue">{eventData.isAdjudicated ? "Yes" : "No"}</TableCell>
+                            <TableCell>{eventData.isAdjudicated ? "Yes" : "No"}</TableCell>
                         </TableRow>
                     ) : (
                         <TableRow>
-                            <TableCell colSpan={9} align="center" data-i18n="eventDetails.dataRow.noEventData">No event data available</TableCell>
+                            <TableCell colSpan={9} align="center">No event data available</TableCell>
                         </TableRow>
                     )}
                 </TableBody>

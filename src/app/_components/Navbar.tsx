@@ -27,11 +27,10 @@ import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import NotificationsOffIcon from '@mui/icons-material/NotificationsOff';
 
 import MediationIcon from '@mui/icons-material/Mediation';
-import { Button, Menu, MenuItem, Stack, Tooltip, Select, SelectChangeEvent, FormControl, InputLabel } from '@mui/material';
-import { useEffect, useState, useContext } from 'react';
+import {Button, Menu, MenuItem, Stack, Tooltip} from '@mui/material';
+import {useEffect, useState} from 'react';
 import Link from 'next/link';
-import { Label, SaveRounded } from "@mui/icons-material";
-import { LanguageContext } from '../contexts/LanguageContext';
+import {Label, SaveRounded} from "@mui/icons-material";
 import AlarmAudio from "@/app/_components/AlarmAudio";
 import {selectAlarmAudioVolume} from "@/lib/state/OSCARClientSlice";
 import {useSelector} from "react-redux";
@@ -116,10 +115,6 @@ export default function Navbar({ children }: { children: React.ReactNode }) {
   const menuOpen = Boolean(anchorEl); // Open state for notification menu
   const [drawerOpen, setDrawerOpen] = useState(false);  // Open state for navigation drawer
 
-  const { language, setLanguage } = useContext(LanguageContext);
-  const handleLanguageChange = (event: SelectChangeEvent<string>) => {
-    setLanguage(event.target.value as string);
-  };
 
   const savedVolume = useSelector(selectAlarmAudioVolume);
 
@@ -203,7 +198,7 @@ export default function Navbar({ children }: { children: React.ReactNode }) {
         <Toolbar>
           <IconButton
             color="inherit"
-            aria-label="open drawer" data-i18n-aria-label="navbar.ariaLabel.openDrawer"
+            aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
             sx={{
@@ -214,30 +209,13 @@ export default function Navbar({ children }: { children: React.ReactNode }) {
             <MenuIcon />
           </IconButton>
           <Stack direction={"row"} width={"100%"} alignItems={"center"} justifyContent={"space-between"}>
-            <Typography variant="h6" noWrap component="div" data-i18n="navbar.title">
+            <Typography variant="h6" noWrap component="div">
               OSCAR
             </Typography>
-            <Stack direction="row" spacing={1} alignItems="center">
-              <FormControl size="small" sx={{ m: 1, minWidth: 120, color: 'inherit' }}>
-                <InputLabel id="language-select-label" sx={{ color: 'inherit' }} data-i18n="navbar.languageSelectLabel">Language</InputLabel>
-                <Select
-                  labelId="language-select-label"
-                  id="language-select"
-                  value={language}
-                  label="Language"
-                  data-i18n-label="navbar.languageSelectLabel"
-                  onChange={handleLanguageChange}
-                  sx={{ color: 'inherit', '.MuiOutlinedInput-notchedOutline': { borderColor: 'inherit' }, '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: 'inherit' }, '.MuiSvgIcon-root': { color: 'inherit' } }}
-                >
-                  <MenuItem value="en" data-i18n="navbar.lang.en">English</MenuItem>
-                  <MenuItem value="es" data-i18n="navbar.lang.es">Español</MenuItem>
-                  <MenuItem value="fr" data-i18n="navbar.lang.fr">Français</MenuItem>
-                </Select>
-              </FormControl>
-              <Tooltip title={'Alarm Volume'} data-i18n-title="alarmAudio.volumeTitle" arrow placement="top">
-                <IconButton
-                  color="inherit"
-                aria-label="open notifications" data-i18n-aria-label="navbar.ariaLabel.openNotifications"
+            <Tooltip title={'Alarm Volume'} arrow placement="top">
+              <IconButton
+                color="inherit"
+                aria-label="open notifications"
                 onClick={handleMenuOpen}
               >
                 {savedVolume === 0 ? <NotificationsOffIcon/> : <NotificationsRoundedIcon/>}
@@ -294,8 +272,7 @@ export default function Navbar({ children }: { children: React.ReactNode }) {
                   >
                     {item.icon}
                   </ListItemIcon>
-                  {/* TODO: Dynamically set data-i18n key based on item.title (e.g., navbar.menuitem.dashboard) */}
-                  <ListItemText primary={item.title} sx={{ opacity: drawerOpen ? 1 : 0 }} data-i18n={`navbar.menuitem.${item.title.toLowerCase()}`} />
+                  <ListItemText primary={item.title} sx={{ opacity: drawerOpen ? 1 : 0 }} />
                 </ListItemButton>
               </ListItem>
             </Link>
@@ -322,8 +299,7 @@ export default function Navbar({ children }: { children: React.ReactNode }) {
                   >
                     {item.icon}
                   </ListItemIcon>
-                  {/* TODO: Dynamically set data-i18n key based on item.title (e.g., navbar.menuitem.account) */}
-                  <ListItemText primary={item.title} sx={{ opacity: drawerOpen ? 1 : 0 }} data-i18n={`navbar.menuitem.${item.title.replace(" ", "")}`} />
+                  <ListItemText primary={item.title} sx={{ opacity: drawerOpen ? 1 : 0 }} />
                 </ListItemButton>
               </ListItem>
             </Link>

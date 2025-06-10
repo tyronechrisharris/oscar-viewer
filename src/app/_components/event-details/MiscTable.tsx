@@ -55,17 +55,16 @@ export default function MiscTable({currentTime}: {currentTime: string}) {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableBody>
               <TableRow>
-                <TableCell data-i18n="eventDetails.miscTable.header.maxGammaCps">Max Gamma Count Rate (cps)</TableCell>
+                <TableCell>Max Gamma Count Rate (cps)</TableCell>
                 <TableCell>{eventData?.maxGamma}</TableCell>
-                <TableCell data-i18n="eventDetails.miscTable.header.neutronBackgroundCps">Neutron Background Count Rate</TableCell>
+                <TableCell>Neutron Background Count Rate</TableCell>
                 <TableCell>{eventData?.neutronBackground}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell data-i18n="eventDetails.miscTable.header.maxNeutronCps">Max Neutron Count Rate (cps)</TableCell>
+                <TableCell>Max Neutron Count Rate (cps)</TableCell>
                 <TableCell>{eventData?.maxNeutron}</TableCell>
-                <TableCell data-i18n="eventDetails.miscTable.header.speedKph">Speed (kph)</TableCell>
-                {/* TODO: Content is dynamic (speedVal). Key 'eventDetails.miscTable.value.notAvailable' exists for "N/A". */}
-                <TableCell data-i18n="eventDetails.miscTable.speedValue">{speedVal}</TableCell>
+                <TableCell>Speed (kph)</TableCell>
+                <TableCell>{speedVal}</TableCell>
               </TableRow>
             </TableBody>
           </Table>

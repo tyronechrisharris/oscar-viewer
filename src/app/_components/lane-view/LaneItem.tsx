@@ -49,9 +49,7 @@ export default function LaneItem(props: {
                     )
                     }
                     sx={{ marginRight: 2}} />
-                {/* TODO: Content is dynamic. The prefix "- Status: " is covered by laneView.laneItem.statusPrefix.
-                    The props.name and capitalize(props.status) are dynamic. */}
-                <Typography variant="h6" color={colors(props.status)} data-i18n="laneView.laneItem.statusPrefix">{props.name} - Status: {capitalize(props.status)}</Typography>
+                <Typography variant="h6" color={colors(props.status)}>{props.name} - Status: {capitalize(props.status)}</Typography>
             </Stack>
         </Paper>
     );

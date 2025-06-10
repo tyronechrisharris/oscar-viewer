@@ -19,7 +19,7 @@ export default function QuickView() {
         return (
             <Grid item xs={4}>
                 <Paper variant='outlined' sx={{height: "100%"}}>
-                    <Box data-i18n="dashboard.quickView.loading">Loading...</Box>
+                    <Box>Loading...</Box>
                 </Paper>
             </Grid>
         )

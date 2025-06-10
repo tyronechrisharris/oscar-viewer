@@ -16,15 +16,15 @@ export default function Comment(props: {
     <Stack direction={"column"} p={2} spacing={2}>
       <Stack direction={"row"} spacing={2} justifyContent={"start"} alignItems={"center"}>
         <Avatar>OP</Avatar>
-        <Typography variant="h6" data-i18n="eventDetails.comment.usernameLabel">Username</Typography>
+        <Typography variant="h6">Username</Typography>
       </Stack>
       <TextField
         id="outlined-multiline-static"
-        label="Notes" data-i18n-label="eventDetails.comment.notesLabel"
+        label="Notes"
         multiline
         rows={4}
         disabled
-        value={"Insert comments here"} data-i18n-value="eventDetails.comment.notesValue"
+        value={"Insert comments here"}
       />
       {uploadedFiles.length > 0 && (
         <Paper variant='outlined' sx={{ width: "100%" }}>

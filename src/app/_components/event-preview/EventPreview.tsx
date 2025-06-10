@@ -541,12 +541,12 @@ export function EventPreview() {
         <Stack p={1} display={"flex"} spacing={1}>
             <Stack direction={"row"} justifyContent={"space-between"} spacing={1}>
                 <Stack direction={"row"} spacing={1} alignItems={"center"}>
-                    <Typography variant="h6" data-i18n="eventPreview.occupancyIdLabel">Occupancy ID: {eventPreview.eventData.occupancyId}</Typography>
-                    <IconButton onClick={handleExpand} aria-label="expand" data-i18n-aria-label="eventPreview.ariaLabel.expand">
+                    <Typography variant="h6">Occupancy ID: {eventPreview.eventData.occupancyId}</Typography>
+                    <IconButton onClick={handleExpand} aria-label="expand">
                         <OpenInFullRoundedIcon fontSize="small"/>
                     </IconButton>
                 </Stack>
-                <IconButton onClick={handleCloseRounded} aria-label="close" data-i18n-aria-label="eventPreview.ariaLabel.close">
+                <IconButton onClick={handleCloseRounded} aria-label="close">
                     <CloseRoundedIcon fontSize="small"/>
                 </IconButton>
             </Stack>
@@ -583,7 +583,7 @@ export function EventPreview() {
                             :
                            (
                                <div>
-                                   <Typography variant="h6" align="center" data-i18n="eventDetails.media.noVideo">No video data available.</Typography>
+                                   <Typography variant="h6" align="center">No video data available.</Typography>
                                </div>
                            )}
                         </Box>
@@ -597,21 +597,13 @@ export function EventPreview() {
                 <TextField
                     onChange={handleNotes}
                     id="outlined-multiline-static"
-                    label="Notes" data-i18n-label="adjudicationDetail.notesLabel"
+                    label="Notes"
                     multiline
                     rows={4}
                 />
                 <Stack direction={"row"} spacing={10} sx={{width: "100%"}} justifyContent={"center"}>
-                    <Button onClick={sendAdjudicationData} variant={"contained"} size={"small"} fullWidth={false} color={"success"} disabled={adjFormData === null} sx={{width: "25%"}} data-i18n="adjudicationDetail.submitButton">Submit</Button>
-                    {/* TODO: This Snackbar's message is dynamic (adjSnackMsg).
-                        The i18n library will need to handle translation of these messages before they are set in the state.
-                        Possible keys:
-                        adjudicationDetail.snackbar.submitSuccess,
-                        adjudicationDetail.snackbar.submitFailed,
-                        adjudicationDetail.snackbar.cannotFindObservation,
-                        adjudicationDetail.snackbar.adjudicationFailed */}
+                    <Button onClick={sendAdjudicationData} variant={"contained"} size={"small"} fullWidth={false} color={"success"} disabled={adjFormData === null} sx={{width: "25%"}}>Submit</Button>
                     <Snackbar
-                        data-i18n="eventPreview.snackbarMessage"
                         anchorOrigin={{ vertical:'top', horizontal:'center' }}
                         open={openSnack}
                         autoHideDuration={5000}
@@ -624,7 +616,7 @@ export function EventPreview() {
                         }}
                     />
 
-                    <Button onClick={resetAdjudicationData} variant={"contained"} size={"small"} fullWidth={false} color={"secondary"} sx={{width: "25%"}} data-i18n="eventPreview.resetButton">Reset</Button>
+                    <Button onClick={resetAdjudicationData} variant={"contained"} size={"small"} fullWidth={false} color={"secondary"} sx={{width: "25%"}}>Reset</Button>
                 </Stack>
             </Stack>
         </Stack>

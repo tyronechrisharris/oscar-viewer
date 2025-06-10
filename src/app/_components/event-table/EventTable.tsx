@@ -244,28 +244,28 @@ export default function EventTable({
     const columns: GridColDef<EventTableData>[] = [
         {
             field: 'secondaryInspection',
-            headerName: 'Secondary Inspection', // data-i18n="eventDetails.dataRow.header.secondaryInspection"
+            headerName: 'Secondary Inspection',
             type: 'boolean',
             minWidth: 125,
             flex: 1,
         },
         {
             field: 'laneId',
-            headerName: 'Lane ID', // data-i18n="eventDetails.dataRow.header.laneId"
+            headerName: 'Lane ID',
             type: 'string',
             minWidth: 100,
             flex: 1,
         },
         {
             field: 'occupancyId',
-            headerName: 'Occupancy ID', // data-i18n="eventDetails.dataRow.header.occupancyId"
+            headerName: 'Occupancy ID',
             type: 'string',
             minWidth: 125,
             flex: 1.5,
         },
         {
             field: 'startTime',
-            headerName: 'Start Time', // data-i18n="eventDetails.dataRow.header.startTime"
+            headerName: 'Start Time',
             valueFormatter: (params) => (new Date(params)).toLocaleString(locale, {
                 year: 'numeric',
                 month: 'numeric',
@@ -279,7 +279,7 @@ export default function EventTable({
         },
         {
             field: 'endTime',
-            headerName: 'End Time', // data-i18n="eventDetails.dataRow.header.endTime"
+            headerName: 'End Time',
             valueFormatter: (params) => (new Date(params)).toLocaleString(locale, {
                 year: 'numeric',
                 month: 'numeric',
@@ -293,29 +293,29 @@ export default function EventTable({
         },
         {
             field: 'maxGamma',
-            headerName: 'Max Gamma (cps)', // data-i18n="eventTable.header.maxGammaCps"
+            headerName: 'Max Gamma (cps)',
             valueFormatter: (params) => (typeof params === 'number' ? params : 0),
             minWidth: 150,
             flex: 1.2,
         },
         {
             field: 'maxNeutron',
-            headerName: 'Max Neutron (cps)', // data-i18n="eventTable.header.maxNeutronCps"
+            headerName: 'Max Neutron (cps)',
             valueFormatter: (params) => (typeof params === 'number' ? params : 0),
             minWidth: 150,
             flex: 1.2,
         },
         {
             field: 'status',
-            headerName: 'Status', // data-i18n="eventDetails.dataRow.header.status"
+            headerName: 'Status',
             type: 'string',
             minWidth: 125,
             flex: 1.2,
         },
         {
             field: 'isAdjudicated',
-            headerName: 'Adjudicated', // data-i18n="eventDetails.dataRow.header.adjudicated"
-            valueFormatter: (params) => params ? "Yes" : "No", // Dynamic: "Yes"/"No" (eventDetails.dataRow.value.yes/no)
+            headerName: 'Adjudicated',
+            valueFormatter: (params) => params ? "Yes" : "No",
             minWidth: 100,
             flex: 1,
         },
@@ -329,7 +329,7 @@ export default function EventTable({
                 selectionModel.includes(params.row.id) ? (
                     <GridActionsCellItem
                         icon={<VisibilityRoundedIcon />}
-                        label="Details" data-i18n-label="eventTable.detailsButtonLabel"
+                        label="Details"
                         onClick={() => handleEventPreview()}
                         showInMenu
                     />

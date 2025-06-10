@@ -39,11 +39,11 @@ export default function AdjudicationSelect(props: {
 
     return (
         <FormControl size="small" fullWidth>
-            <InputLabel id="label" sx={{"&.MuiInputLabel-root": {color: style}}} data-i18n="adjudicationSelect.label">Adjudicate</InputLabel>
+            <InputLabel id="label" sx={{"&.MuiInputLabel-root": {color: style}}}>Adjudicate</InputLabel>
             <Select
                 variant="outlined"
                 id="label"
-                label="Adjudicate" data-i18n-label="adjudicationSelect.label"
+                label="Adjudicate"
                 value={props.adjCode.label}
                 onChange={handleChangeAdjCode}
                 MenuProps={{
@@ -72,32 +72,32 @@ export default function AdjudicationSelect(props: {
                         },
                 }}
             >
-                <ListSubheader data-i18n="adjudicationSelect.subheader.realAlarm">Real Alarm</ListSubheader>
+                <ListSubheader>Real Alarm</ListSubheader>
                 {AdjudicationCodes.getGroupCodes("Real Alarm").map((code) => (
                     <MenuItem key={code.code} value={code.label} sx={colorCodes.real}>{code.label}</MenuItem>
                 ))}
 
-                <ListSubheader data-i18n="adjudicationSelect.subheader.innocentAlarm">Innocent Alarm</ListSubheader>
+                <ListSubheader>Innocent Alarm</ListSubheader>
                 {AdjudicationCodes.getGroupCodes("Innocent Alarm").map((code) => (
                     <MenuItem key={code.code} value={code.label} sx={colorCodes.innocent}>{code.label}</MenuItem>
                 ))}
 
-                <ListSubheader data-i18n="adjudicationSelect.subheader.falseAlarm">False Alarm</ListSubheader>
+                <ListSubheader>False Alarm</ListSubheader>
                 {AdjudicationCodes.getGroupCodes("False Alarm").map((code) => (
                     <MenuItem key={code.code} value={code.label} sx={colorCodes.false}>{code.label}</MenuItem>
                 ))}
 
-                <ListSubheader data-i18n="adjudicationSelect.subheader.alarmTamperFault">Alarm/Tamper/Fault</ListSubheader>
+                <ListSubheader>Alarm/Tamper/Fault</ListSubheader>
                 {AdjudicationCodes.getGroupCodes("Test/Maintenance").map((code) => (
                     <MenuItem key={code.code} value={code.label} sx={colorCodes.other}>{code.label}</MenuItem>
                 ))}
 
-                <ListSubheader data-i18n="adjudicationSelect.subheader.tamperFault">Tamper/Fault</ListSubheader>
+                <ListSubheader>Tamper/Fault</ListSubheader>
                 {AdjudicationCodes.getGroupCodes("Tamper/Fault").map((code) => (
                     <MenuItem key={code.code} value={code.label} sx={colorCodes.other}>{code.label}</MenuItem>
                 ))}
 
-                <ListSubheader data-i18n="adjudicationSelect.subheader.other">Other</ListSubheader>
+                <ListSubheader>Other</ListSubheader>
                 {AdjudicationCodes.getGroupCodes("Other").map((code) => (
                     <MenuItem key={code.code} value={code.label} sx={colorCodes.other}>{code.label}</MenuItem>
                 ))}
