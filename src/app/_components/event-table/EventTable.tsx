@@ -204,7 +204,7 @@ export default function EventTable({
 
     const handlePaginationChange = useCallback((model: { page: number; pageSize: number }) => {
         if (model.page === 0 && paginationModel.page !== 0) {
-            setPageLoadedTime(new Date().toISOString());
+            pageLoadedTimeRef.current = new Date().toISOString();
             fetchAllCounts();
         }
         setPaginationModel(model);
@@ -274,9 +274,9 @@ export default function EventTable({
 
     const totalPages = Math.ceil(totalObservations / pageSize);
 
-    const [pageLoadedTime, setPageLoadedTime] = useState(() => new Date().toISOString());
+    const pageLoadedTimeRef = useRef(new Date().toISOString());
 
-    const fetchAllCounts = async () => {
+    const fetchAllCounts = useCallback(async () => {
         if (nodes.size === 0 || stableLaneMap.size === 0)
             return;
 
@@ -296,17 +296,23 @@ export default function EventTable({
 
         setTotalCount(counts);
         setRowCount(total);
-    }
+    }, [nodes, stableLaneMap, getDatastreamIds, fetchTotalCount]);
 
     useEffect(() => {
         fetchAllCounts();
     }, [nodes, stableLaneMap, getDatastreamIds]);
 
-    const fetchPage = useCallback(async (userRequestedPage: number): Promise<boolean | undefined> => {
+    const fetchPage = useCallback(async (userRequestedPage: number, isBackground = false): Promise<boolean | undefined> => {
         if (stableLaneMap.size === 0 || nodes.size === 0 || totalPages === 0)
             return;
 
-        setLoading(true);
+        if (!isBackground) {
+            setLoading(true);
+        }
+
+        if (userRequestedPage === 0) {
+            pageLoadedTimeRef.current = new Date().toISOString();
+        }
 
         try {
             const pageOffset = userRequestedPage * pageSize;
@@ -319,7 +325,7 @@ export default function EventTable({
                 const observationFilter = new ObservationFilter({
                     dataStream: datastreamIds,
                     resultTime: buildResultTimeQuery(filterModel),
-                    // resultTime: `../${pageLoadedTime}`,
+                    // resultTime: `../${pageLoadedTimeRef.current}`,
                     filter: buildFilterQuery(filterModel, tableMode),
                     // filter: tableMode == "alarmtable" ? "gammaAlarm=true OR neutronAlarm=true" : "",
                     order: 'desc'
@@ -346,10 +352,12 @@ export default function EventTable({
             console.error("Error fetching observations,", error)
             setFilteredTableData([])
         } finally {
-            setLoading(false);
+            if (!isBackground) {
+                setLoading(false);
+            }
         }
 
-    }, [nodes, stableLaneMap, totalPages, pageLoadedTime, tableMode, getDatastreamIds, filterRows, filterModel]);
+    }, [nodes, stableLaneMap, totalPages, tableMode, getDatastreamIds, filterRows, filterModel]);
 
     function deduplicateById(arr: EventTableData[]): EventTableData[] {
         const map = new Map();
@@ -366,17 +374,17 @@ export default function EventTable({
         return null;
     }
 
-    async function fetchTotalCount(node: INode, datastreamIds: string[]) {
+    const fetchTotalCount = useCallback(async (node: INode, datastreamIds: string[]) => {
         let endpoint = node.getConnectedSystemsEndpoint(false);
         const queryParams = new URLSearchParams({
-            // resultTime: `../${pageLoadedTime}`, I think it is safe to fetch count of all here
+            // resultTime: `../${pageLoadedTimeRef.current}`, I think it is safe to fetch count of all here
             format: "application/om+json",
             dataStream: `${datastreamIds.join(",")}`,
         });
         if (tableMode === "alarmtable") {
             queryParams.set("filter", "gammaAlarm=true OR neutronAlarm=true")
         }
-//      `/observations/count?resultTime=../${pageLoadedTime}&format=application/om%2Bjson&dataStream=${datastreamIds.join(",")}${tableMode == "alarmtable" ? "&filter=gammaAlarm=true,neutronAlarm=true" : ""}`
+//      `/observations/count?resultTime=../${pageLoadedTimeRef.current}&format=application/om%2Bjson&dataStream=${datastreamIds.join(",")}${tableMode == "alarmtable" ? "&filter=gammaAlarm=true,neutronAlarm=true" : ""}`
         let fullUrl = endpoint + "/observations/count?" + queryParams;
 
         try {
@@ -399,7 +407,7 @@ export default function EventTable({
             console.error("Error fetching total observation count", error);
             return 0;
         }
-    }
+    }, [tableMode]);
 
     const notificationServiceRef = useRef<NotificationService | null>(null);
 
@@ -459,11 +467,22 @@ export default function EventTable({
     useEffect(() => {
         if (totalPages > 0)
             fetchPage(paginationModel.page);
-    }, [totalPages, paginationModel.page, filterModel]);
+    }, [totalPages, paginationModel.page, filterModel, fetchPage]);
 
     useEffect(() => {
         currentPageRef.current = paginationModel.page;
     }, [paginationModel.page]);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (paginationModel.page === 0) {
+                fetchAllCounts();
+                fetchPage(0, true);
+            }
+        }, 15000); // Poll every 15 seconds
+
+        return () => clearInterval(interval);
+    }, [paginationModel.page, fetchAllCounts, fetchPage]);
 
     useEffect(() => {
         if (stableLaneMap.size === 0) return;
@@ -612,25 +631,25 @@ export default function EventTable({
 
             // if (item.field === 'startTime') {
             //     if (item.operator === 'after') {
-            //         return `${isoDate}/${pageLoadedTime}`
+            //         return `${isoDate}/${pageLoadedTimeRef.current}`
             //     } else if (item.operator === 'before') {
             //         return `../${isoDate}`
             //     }
             // } else if (item.field === 'endTime') {
             //     if (item.operator === 'after') {
-            //         return `${isoDate}/${pageLoadedTime}`
+            //         return `${isoDate}/${pageLoadedTimeRef.current}`
             //     } else if (item.operator === 'before') {
             //         return `../${isoDate}`
             //     }
             // }
             if (item.operator === 'after') {
-                return `${isoDate}/${pageLoadedTime}`
+                return `${isoDate}/${pageLoadedTimeRef.current}`
             } else if (item.operator === 'before') {
                 return `../${isoDate}`
             }
         }
 
-        return `../${pageLoadedTime}`;
+        return `../${pageLoadedTimeRef.current}`;
     }
 
     const buildFilterQuery = (filterModel: GridFilterModel, tableMode: string): string => {
